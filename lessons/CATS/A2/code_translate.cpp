@@ -36,13 +36,30 @@ void bucketSortString(vector<string>& arr) {
 
     // Создаем пустые ведра для букв A-Z
     vector<vector<string>> buckets(26);
+    
+    // UPDATE
+    // Создаем пустые ведра для букв a-z
+    vector<vector<string>> bucketsSmall(26);
 
     for (const string& str : arr) {
-        // Нужно получить индекс корзины, в который будем складывать все строки для каждой буквы
-        // Поскольку все символы большие буквы, то, по ASCII таблице, нужно вычитать 65(т.к. А = 65 в таблице -> в 0 ведро = А - 65) 
-        int bucketIndex = int(str[0]) - 65;
-        // Заполняем соответствующее ведро строками
-        buckets[bucketIndex].push_back(str);
+        // // Нужно получить индекс корзины, в который будем складывать все строки для каждой буквы
+        // // Поскольку все символы большие буквы, то, по ASCII таблице, нужно вычитать 65(т.к. А = 65 в таблице -> в 0 ведро = А - 65) 
+        // int bucketIndex = int(str[0]) - 65;
+        // // Заполняем соответствующее ведро строками
+        // buckets[bucketIndex].push_back(str);
+
+        int asciiCode = int(str[0]);
+        int bucketIndex;
+
+        // Распределяем строки между ведрами
+        // Сначала большие, потом маленькие
+        if (asciiCode >= 65 && asciiCode <= 90) {
+            bucketIndex = asciiCode - 65;
+            buckets[bucketIndex].push_back(str);
+        } else {
+            bucketIndex = asciiCode - 97;
+            bucketsSmall[bucketIndex].push_back(str);
+        }
     }
 
     // Очищаем массив перед его заполнением
@@ -50,6 +67,14 @@ void bucketSortString(vector<string>& arr) {
 
     // Сортируем каждое ведро и добавляем его элементы обратно в массив
     for (vector<string>& bucket : buckets) {
+        if (!bucket.empty()) {
+            quickSort(bucket, 0, bucket.size() - 1);
+            arr.insert(arr.end(), bucket.begin(), bucket.end());
+        }
+    }
+
+    // Добавляем сортировку маленьких букв
+    for (vector<string>& bucket : bucketsSmall) {
         if (!bucket.empty()) {
             quickSort(bucket, 0, bucket.size() - 1);
             arr.insert(arr.end(), bucket.begin(), bucket.end());
