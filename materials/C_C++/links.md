@@ -9,3 +9,9 @@
 Операционная система на С++: [ОС на С++](https://github.com/haiku/haiku)
 
 Исходный код Linux: [Linux](https://github.com/torvalds/linux)
+
+Лямбды в С++: [Lambda](https://www.programiz.com/cpp-programming/lambda-expression)
+
+Сортировка map в С++: [Map sort](https://cppscripts.com/cpp-sort-map-by-value)
+
+Примеры сортировок с ламбдами: [Lambda sorts](https://cppscripts.com/cpp-sort-with-lambda)
