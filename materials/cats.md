@@ -1,0 +1,1 @@
+https://github.com/virety/TasksCATS/blob/main/2%20семестр/Задача%20D5.%20Слишком%20много%20способов%20.c
